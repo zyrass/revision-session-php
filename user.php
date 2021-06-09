@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+if (!isset($_POST['pseudo'])) {
+  header("Location: index.php");
+} else {
+  $_SESSION['pseudo'] = $_POST['pseudo'];
+}
+
+?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -8,7 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Les sessions</title>
+  <title>Info User</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/main.css">
@@ -31,28 +40,6 @@
               }
               ?>
     </h1>
-
-    <?php if (!isset($_SESSION['pseudo'])) { ?>
-      <fieldset>
-        <legend>Formulaire de connexion</legend>
-
-        <form method="post" action="user.php">
-          <div>
-            <input type="text" placeholder="Pseudo ici" name="pseudo">
-          </div>
-          <button type="submit">Soumettre</button>
-        </form>
-      </fieldset>
-    <?php } else { ?>
-      <fieldset>
-        <legend>Formulaire de DECONNEXION</legend>
-
-        <form method="post" action="traitement.php">
-          <button type="submit">Se déconnecter</button>
-        </form>
-      </fieldset>
-    <?php } ?>
-
   </main>
 </body>
 
